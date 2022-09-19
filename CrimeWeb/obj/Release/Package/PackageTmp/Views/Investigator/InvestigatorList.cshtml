@@ -1,0 +1,91 @@
+﻿@model IEnumerable<CrimeWeb.Models.InvestigatorModel>
+
+@{
+    ViewBag.Title = "Investigator List";
+}
+
+<div>
+<h3 class="heading">Investigator List</h3>
+    <div style="text-align:right">
+        @Html.ActionLink("+ Create", "Edit", new { Id = 0 }, new { @class = "createnew" })
+    </div>
+
+</div>
+
+
+
+@if (TempData["Sucessmessage"] != null)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p style="text-align:center">@TempData["Sucessmessage"] </p>
+    </div>
+}
+
+
+
+<table class="table" id="investigatortable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Name")
+            </th>
+            <th>
+                @Html.DisplayName("FatherName")
+            </th>
+            <th>
+                @Html.DisplayName("Address")
+            </th>
+            <th>
+                @Html.DisplayName("DateTime Of Join")
+            </th>
+            <th>
+                @Html.DisplayName("Station Name")
+            </th>
+            <th>
+                @Html.DisplayName("Location")
+            </th>
+            <th>
+                @Html.DisplayName("Action")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.investigatorname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fathersname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.doj)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nameofthestation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.location)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#investigatortable').DataTable();
+    });
+</script>

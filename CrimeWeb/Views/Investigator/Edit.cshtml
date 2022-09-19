@@ -1,0 +1,157 @@
+﻿@model CrimeWeb.Models.InvestigatorModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Investigator</h4>
+    <hr />
+    @Html.HiddenFor(m => m.id, new { Id = "investid" })
+    @Html.HiddenFor(m => m.createdby)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.investigatorid, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.investigatorid, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.investigatorid, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.investigatorname, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.investigatorname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.investigatorname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.fathersname, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.fathersname, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.fathersname, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.city, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.state, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.pincode, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.pincode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.pincode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.doj, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.doj, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.doj, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.nameofthestation, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.nameofthestation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.nameofthestation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.location, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.location, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.location, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div style="margin-top: 28px;">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                    <input type="reset" value="Clear" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Back to List", "InvestigatorList")
+</div>
+<script>
+    $(document).ready(function () {
+        var modeldata = @Html.Raw(Json.Encode(Model));
+        if (modeldata.id > 0) {
+            $('#dob').val(modeldata.DOBstring)
+            $('#doj').val(modeldata.DOJstring)
+        }
+    })
+
+</script>

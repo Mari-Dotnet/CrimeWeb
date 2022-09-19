@@ -1,0 +1,395 @@
+﻿@model CrimeWeb.Models.FIRmodel
+@using CrimeWeb.Models
+
+@{
+    ViewBag.Title = "Edit";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>FIR</h4>
+        <hr />
+        @Html.HiddenFor(m => m.id)
+        @Html.HiddenFor(m => m.createdby)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.firno, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.firno, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.firno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.district, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.district, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.policestation, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.policestation, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.policestation, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.firyear, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.firyear, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.firyear, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.firdate, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.firdate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.firdate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Act & sections", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.act1, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.act1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.act1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.section1, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.section1, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.section1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.act2, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.act2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.act2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.section2, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.section2, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.section2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="form-group">
+                @Html.LabelFor(model => model.otheractandsection, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.otheractandsection, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.otheractandsection, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Occurrence Of Offence", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Day", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownList("occurenceday", new List<SelectListItem>()
+                   {
+
+                       new SelectListItem{Text="select",Value=""},
+                       new SelectListItem{Text="Sunday",Value="Sunday"},
+                       new SelectListItem{Text="Monday",Value="Monday"},
+                       new SelectListItem{Text="Tuesday",Value="Tuesday"},
+                       new SelectListItem{Text="Wednesday",Value="Wednesday"},
+                       new SelectListItem{Text="Thursday",Value="Thursday"},
+                       new SelectListItem{Text="Friday",Value="Friday"},
+                       new SelectListItem{Text="Saturday",Value="Saturday"},
+                   }, new { @class = "form-control" })
+                        <span id="errorday" class="text-danger" style="display: none; width: 172px;">Please select the Day</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Date", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.occurencedate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.occurencedate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Time Period", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.timeperiod, new { htmlAttributes = new { @class = "form-control",@readonly="readonly" } })
+                        @Html.ValidationMessageFor(model => model.timeperiod, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Time From", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.timefrom, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.timefrom, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Time To", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.timeto, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.timeto, "", new { @class = "text-danger" })
+                        <span id="errortime" class="text-danger" style="display: none; width: 172px;">start time should be smaller than end time!</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Information Received At", htmlAttributes: new { @class = "control-label" })
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Police station", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.inforeceivedps, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.inforeceivedps, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Date", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.infodate, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infodate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Time", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.infotime, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.infotime, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="form-group">
+                @Html.Label("Other Information", htmlAttributes: new { @class = "control-label" })
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dairyrefno, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.dairyrefno, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dairyrefno, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.placeanddirectionofoccurence, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.placeanddirectionofoccurence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.placeanddirectionofoccurence, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.reason, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.reason, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.reason, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.particularsofpropertystolen, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.particularsofpropertystolen, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.particularsofpropertystolen, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.totalvalue, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.totalvalue, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.totalvalue, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Criminal", htmlAttributes: new { @class = "control-label" })
+                    <div style="margin-top: 10px">
+                        @Html.DropDownListFor(model=>model.CriminalId, new SelectList(ViewBag.Criminallist as List<DropdownModel>, "Id", "Name", null), new { @multiple = "multiple", @class = "form-control crimimalmulti" })
+                        <span id="errorcriminal" class="text-danger" style="display: none; width: 172px;">Please select the criminal</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div style="margin-top: 28px;">
+                        <input type="submit" id="btnfircreate" value="Save" class="btn btn-primary" />
+                        <input type="reset" value="Clear" class="btn btn-secondary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "FIRList")
+</div>
+<script type="text/javascript" src="~/Scripts/Commonjs/jquery-2.2.4.min.js"></script>
+<script src="~/Scripts/Commonjs/jquery.multi-select.js"></script>
+<script>var $jq1111 = jQuery.noConflict(true);</script>
+<script>
+    $jq1111(document).ready(function () {
+
+
+        var modeldata = @Html.Raw(Json.Encode(Model));
+        if (modeldata.id > 0) {
+            $('#firdate').val(modeldata.FIRdatestr)
+            $('#occurencedate').val(modeldata.Occurancedatestr)
+            $('#infodate').val(modeldata.informdatestr)
+            $('.multi-select-button').text(modeldata.fircriminals);
+            $.each(modeldata.CriminalId, function (item,value) {
+               // $("input[value='"+value+"']").prop('checked', true);
+                $(".crimimalmulti option[value='" + value +"']").prop("selected", true)
+            })
+            }
+            $jq1111('.crimimalmulti').multiSelect();
+           
+        });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        @*var modeldata = @Html.Raw(Json.Encode(Model));
+        if (modeldata.id > 0) {
+            $('#firdate').val(modeldata.FIRdatestr)
+            $('#occurencedate').val(modeldata.Occurancedatestr)
+            $('#infodate').val(modeldata.informdatestr)
+            $('.multi-select-button').text(modeldata.fircriminals);
+            $.each(modeldata.CriminalId, function (item,value) {
+                $("input[value='"+value+"']").prop('checked', true);
+            })
+        }*@
+
+
+        $('#btnfircreate').click(function(){
+            if ($('.crimimalmulti').val() == null) {
+                $('#errorcriminal').css("display", "block")
+                return false;
+            } else {
+                $('#errorcriminal').css("display", "none")
+            }
+
+            if ( $('#occurenceday').val()=="") {
+                $('#errorday').css("display", "block")
+                return false;
+            } else {
+                $('#errorday').css("display", "none")
+            }
+
+            var timefrom = new Date();
+            temp = $('#timefrom').val().split(":");
+            timefrom.setHours((parseInt(temp[0]) - 1 + 24) % 24);
+            timefrom.setMinutes(parseInt(temp[1]));
+
+            var timeto = new Date();
+            temp = $('#timeto').val().split(":");
+            timeto.setHours((parseInt(temp[0]) - 1 + 24) % 24);
+            timeto.setMinutes(parseInt(temp[1]));
+
+            if (timeto < timefrom) {
+                $('#errortime').css("display", "block")
+                return false;
+            } else {
+                var diff = timeto - timefrom;
+                var diffSeconds = diff / 1000;
+                var HH = Math.floor(diffSeconds / 3600);
+                var MM = Math.floor(diffSeconds % 3600) / 60;
+
+                var formatted = ((HH < 10) ? ("0" + HH) : HH) + ":" + ((MM < 10) ? ("0" + MM) : MM)
+                $('#timeperiod').val(formatted);
+                $('#errortime').css("display", "none")
+            }
+            
+        })
+           
+    })
+</script>

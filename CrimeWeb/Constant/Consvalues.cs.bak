@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace CrimeWeb
+{
+    public static class Consvalues
+    {
+        #region User
+        public static string AddUser = "proc_adduser";
+        public static string LoginSelect = "select id ,username,password from user_details where username='{0}' and Isactive=1";
+        public static string UserNameselect = "select Username from user_details where username='{0}' and Isactive=1 ";
+        public static string Lastloginupdate = "update user_details set lastlogin=getdate() where id={0}";
+        #endregion
+
+        #region Invstigater
+        public static string AddInvstigater = "proc_addinvestigator";
+        public static string Investigatordetailget = "select * from investigator_details where Isactive=1";
+        public static string SingleInvestigatorget = "select * from investigator_details where id='{0}' and Isactive=1";
+        public static string Investigatorcheckinsert = "select investigatorid  from [dbo].[investigator_details] where investigatorid='{0}'and Isactive=1";
+        #endregion
+
+    }
+}

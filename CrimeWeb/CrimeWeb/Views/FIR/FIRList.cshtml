@@ -1,0 +1,78 @@
+﻿@model IEnumerable<CrimeWeb.Models.FIRmodel>
+
+@{
+    ViewBag.Title = "FIR List";
+}
+
+<div>
+    <h3 class="heading">FIR List</h3>
+    <div style="text-align:right">
+        @Html.ActionLink("+ Create", "Edit", new { Id = 0 }, new { @class = "createnew" })
+    </div>
+
+</div>
+
+
+
+@if (TempData["Sucessmessage"] != null)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p style="text-align:center">@TempData["Sucessmessage"] </p>
+    </div>
+}
+
+
+
+<table class="table" id="FIRtable">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("FIR No")
+            </th>
+            <th>
+                @Html.DisplayName("Date")
+            </th>
+            <th>
+                @Html.DisplayName("District")
+            </th>
+            <th>
+                @Html.DisplayName("Police station")
+            </th>
+            <th>
+                @Html.DisplayName("Action")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.firno)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.firdate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.district)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.policestation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#FIRtable').DataTable();
+    });
+</script>

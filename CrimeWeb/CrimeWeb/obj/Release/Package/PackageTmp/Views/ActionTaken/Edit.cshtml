@@ -1,0 +1,159 @@
+﻿@model CrimeWeb.Models.ActionTakenModel
+@using CrimeWeb.Models
+@{
+    ViewBag.Title = "Edit";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4 class="heading">Action Taken</h4>
+    <hr />
+    @Html.HiddenFor(m => m.id, new { Id = "actionId" })
+    @Html.HiddenFor(m => m.createdby)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="form-group">
+            @Html.Label("Action taken: Sicce the above information reveals commision of offence(s) u/s Mentioned at item No:2", htmlAttributes: new { @class = "control-label" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Registered the case and took up the investigation or", htmlAttributes: new { @class = "control-label" })
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Name Of invesetigator", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.DropDownListFor(model => model.investigatorId, new SelectList(ViewBag.Investigator as List<DropdownModel>, "Id", "Name", null), new { @class = "form-control" })
+                    <span id="errorinvestigator" class="text-danger" style="display: none; width: 172px;">Please select the criminal</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Rank", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.investigatorrank, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.investigatorrank, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.FIRNumber, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    <div>
+                        @Html.DropDownListFor(model => model.firno, new SelectList(ViewBag.firlst as List<DropdownModel>, "Id", "Name", null), new { @class = "form-control" })
+                        <span id="errorfir" class="text-danger" style="display: none; width: 172px;">Please select the FIR</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="form-group">
+            @Html.Label("to take up the investigations or", htmlAttributes: new { @class = "control-label" })
+        </div>
+      
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Refused Investigation due to", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.refusedinvestigation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.refusedinvestigation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.Label("Transferred to PS", htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.transferredps, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.transferredps, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model => model.district, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    <div>
+                        @Html.EditorFor(model => model.district, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.district, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("on point of application.", htmlAttributes: new { @class = "control-label" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group">
+            <div>
+                @Html.Label("FIR read over to the compalient/ Informant, adminitted to the correctly recored and a copy given the Compliant/ informant, free of cost.", htmlAttributes: new { @class = "control-label" })
+            </div>
+        </div>
+
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                @Html.LabelFor(model=>model.judgementdetails, htmlAttributes: new { @class = "control-label" })
+                <div>
+                    @Html.EditorFor(model => model.judgementdetails, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.judgementdetails, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model=>model.nameofinchargeps, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.nameofinchargeps, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.nameofinchargeps, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <div style="margin-top: 28px;">
+                    <input type="submit" value="Save"  id="brnactioncreate"class="btn btn-primary" />
+                    <input type="reset" value="Clear" class="btn btn-secondary" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Back to List", "Actionlist")
+</div>
+<script>
+    $('#brnactioncreate').click(function () {
+        if ($('#investigatorId').val() == 0) {
+            $('#errorinvestigator').css("display", "block")
+            return false;
+        } else {
+            $('#errorinvestigator').css("display", "none")
+        }
+
+        if ($('#firno').val() == 0) {
+            $('#errorfir').css("display", "block")
+            return false;
+        } else {
+            $('#errorfir').css("display", "none")
+        }
+
+
+    })
+</script>
+

@@ -1,0 +1,275 @@
+﻿@model CrimeWeb.Models.SearchModel
+@{
+    ViewBag.Title = "search List";
+}
+
+<div>
+    <h3 class="heading">Search</h3>
+</div>
+
+@using (@Html.BeginForm())
+{
+    <div class="form-horizontal">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Search", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownList("Searchvalue", new List<SelectListItem>()
+                   {
+
+                       new SelectListItem{Text="select",Value="0"},
+                       new SelectListItem{Text="Investigator",Value="Investigator"},
+                       new SelectListItem{Text="Criminal",Value="Criminal"},
+                       new SelectListItem{Text="FIR",Value="FIR"},
+                       new SelectListItem{Text="Action taken",Value="Actiontaken"},
+                   }, new { @class = "form-control" })
+                        <span id="errorday" class="text-danger" style="display: none; width: 172px;">Please select the Day</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div style="margin-top: 28px;">
+                        <input type="submit" id="btnfircreate" value="search" class="btn btn-primary" />
+                        <input type="button" value="Clear" id="btnclear" class="btn btn-secondary" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    if (Model.FIRList.Count > 0)
+    {
+        <table class="table" id="FIRtable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("FIR No")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Date")
+                    </th>
+                    <th>
+                        @Html.DisplayName("District")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Police station")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.FIRList)
+                {
+                    <tr>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.firno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.firdate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.district)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.policestation)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    if (Model.ActionList.Count > 0)
+    {
+        <table class="table" id="actiontakentbl">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("FIR Number")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Investigator Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Judgement")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Investigation")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ActionList)
+                {
+                    <tr>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FIRNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.InverstigatorName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.judgementdetails)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.refusedinvestigation)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    if (Model.CriminalList.Count > 0)
+    {
+        <table class="table" id="Criminaltable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("CriminalNumber")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Father Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Address")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Body marks")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.CriminalList)
+                {
+                    <tr>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CriminalNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fathername)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.bodymarks)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    if (Model.InvestigatorList.Count > 0)
+    {
+        <table class="table" id="investigatortable">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayName("Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("FatherName")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Address")
+                    </th>
+                    <th>
+                        @Html.DisplayName("DateTime Of Join")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Station Name")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Location")
+                    </th>
+                    <th>
+                        @Html.DisplayName("Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.InvestigatorList)
+                {
+                    <tr>
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.investigatorname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.fathersname)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.doj)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.nameofthestation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.location)
+                        </td>
+
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                            @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+
+
+
+
+
+
+}
+
+<script>
+    $(document).ready(function () {
+        var tablecriminal = $('#Criminaltable').DataTable();
+        var tableinvestigator = $('#investigatortable').DataTable();
+        var tableaction = $('#actiontakentbl').DataTable();
+        var tableFir = $('#FIRtable').DataTable();
+        $('#btnclear').click(function () {
+            $('#Searchvalue').val('0');
+        })
+    });
+</script>
+

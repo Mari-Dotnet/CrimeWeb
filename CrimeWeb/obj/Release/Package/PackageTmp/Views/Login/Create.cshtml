@@ -1,0 +1,75 @@
+﻿@model CrimeWeb.Models.UserModel
+@{
+    ViewBag.Title = "Create User";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link href="~/Content/Login/Loginstyle.css" rel="stylesheet" />
+   
+</head>
+<body>
+    <div id="login-form-wrap">
+        <span style="color:cornflowerblue">New User Registeration</span>
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "login-form" }))
+        {
+            <span class="errorvalidation">@ViewBag.errormessage</span>
+            <p>
+                @Html.TextBoxFor(m => m.firstname, new { @class = "createform", @placeholder = "First Name" ,required = "required" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.lastname, new { @class = "createform", @placeholder = "Last Name"})
+            </p>
+            <p>
+               @* @Html.TextBoxFor(m => m.gender, new { @class = "", required = "required" })*@
+                @Html.DropDownList("gender", new List<SelectListItem>
+   {
+   new SelectListItem{ Text="select gender", Value = ""},
+   new SelectListItem{ Text="Male", Value = "M"},
+   new SelectListItem{ Text="FeMale", Value ="F" }
+   },new { @class = "createform centertext", @style = "font-size: 16px;" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.address, new { @class = "createform", @placeholder = "Address" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.city, new { @class = "createform", @placeholder = "City" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.state, new { @class = "createform", @placeholder = "State" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.contactno, new { @class = "createform", @placeholder = "Contact Number", required = "required" })
+            </p>
+            <p>
+                @Html.TextBoxFor(m => m.username, new { @class = "createform", @placeholder = "Username", required = "required" })
+            </p>
+            <p>
+                @Html.PasswordFor(m => m.password, new { @class = "createform", @placeholder = "Password", required = "required" })
+            </p>
+            <p>
+                <input type="submit"  class="createform" id="login" value="Create">
+            </p>
+
+        }
+
+        <div id="create-account-wrap">
+            <p><a href=@Url.Action("Login","Login")>Login</a><p>
+        </div><!--create-account-wrap-->
+    </div><!--login-form-wrap-->
+    
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+</body>
+</html>
+
+

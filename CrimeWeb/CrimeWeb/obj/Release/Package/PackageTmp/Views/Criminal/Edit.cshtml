@@ -1,0 +1,209 @@
+﻿@model CrimeWeb.Models.Criminalmodel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@using (Html.BeginForm("Edit", "Criminal", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Criminal</h4>
+        <hr />
+        @Html.HiddenFor(m => m.id, new { Id = "CriminalId" })
+        @Html.HiddenFor(m => m.createdby)
+        @Html.HiddenFor(m=>Model.Imagepath)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CriminalNumber, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.CriminalNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CriminalNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.fathername, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.fathername, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.fathername, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.dob, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.dob, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.dob, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.DropDownList("gender", new List<SelectListItem>
+    {
+    new SelectListItem{ Text="select gender", Value = ""},
+    new SelectListItem{ Text="Male", Value = "M"},
+    new SelectListItem{ Text="FeMale", Value ="F" }
+    }, new { @class = "form-control", })
+                        @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.placeofbirth, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.placeofbirth, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.placeofbirth, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.haircolour, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.haircolour, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.haircolour, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.colour, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.colour, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.colour, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.bodymarks, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.bodymarks, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.bodymarks, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Nationality, htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Nationality, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.Label("Image", htmlAttributes: new { @class = "control-label" })
+                    <div>
+                        <input type="file" name="file" accept="image/png,image/jpeg" class="form-control" onchange="loadFile(event)" />
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <div style="margin-top: 28px;">
+                        <input type="submit" value="Save" class="btn btn-primary" />
+                        <input type="reset" value="Clear" class="btn btn-secondary" />
+                    </div>
+                </div>
+            </div>
+            @if (Model.id > 0 && !string.IsNullOrEmpty(Model.Imagepath))
+            {
+                <div class="col-md-4">
+                    <img id="output" src="@Model.Imagepath" style="width:100px;height:100px;" />
+                </div>
+            }
+            else
+            {
+                <div class="col-md-4">
+                    <img id="output" style="width:100px;height:100px;display:none" />
+                </div>
+            }
+
+
+        </div>
+
+    </div>
+}
+
+<div style="text-align:right">
+    @Html.ActionLink("Back to List", "CriminalList")
+</div>
+<script>
+    $(document).ready(function () {
+        var modeldata = @Html.Raw(Json.Encode(Model));
+        if (modeldata.id > 0) {
+            $('#dob').val(modeldata.DOBstring)
+        }
+    })
+
+    var loadFile = function (event) {
+        var output = document.getElementById('output');
+        var imageverify = event.target.files[0];
+        if (typeof imageverify === 'undefined') {
+            $('#output').prop("src", "#");
+            $('#output').css("display","none");
+        }
+        else {
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function () {
+                URL.revokeObjectURL(output.src) // free memory
+                $('#output').css("display", "block");
+            }
+        }
+
+    };
+
+</script>

@@ -1,0 +1,82 @@
+﻿@model IEnumerable<CrimeWeb.Models.ActionTakenModel>
+@{
+    ViewBag.Title = "ActionList";
+}
+
+
+
+
+<div>
+    <h3 class="heading">Action Taken List</h3>
+    <div style="text-align:right">
+        @Html.ActionLink("+ Create", "Edit", new { Id = 0 }, new { @class = "createnew" })
+    </div>
+
+</div>
+
+
+
+@if (TempData["Sucessmessage"] != null)
+{
+    <div class="alert alert-success">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>
+        <p style="text-align:center">@TempData["Sucessmessage"] </p>
+    </div>
+}
+
+
+
+<table class="table" id="actiontakentbl">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("FIR Number")
+            </th>
+            <th>
+                @Html.DisplayName("Investigator Name")
+            </th>
+            <th>
+                @Html.DisplayName("Judgement")
+            </th>
+            <th>
+                @Html.DisplayName("Investigation")
+            </th>
+            <th>
+                @Html.DisplayName("Action")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIRNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.InverstigatorName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.judgementdetails)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.refusedinvestigation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        var table = $('#actiontakentbl').DataTable();
+    });
+</script>
+
+
